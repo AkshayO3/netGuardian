@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { bg } from "../../public"
+import { bg } from "../../../public"
 import Link from "next/link"
 const Login = () => {
   return (

@@ -1,4 +1,4 @@
-import { severe } from "../../public/constants";
+import { severe } from "../../../public/constants";
 
 const Severity = () => {
   return (
