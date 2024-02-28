@@ -2,14 +2,16 @@ import express from "express"
 import mongoose from "mongoose"
 import multer from "multer"
 const upload = multer({ storage: multer.memoryStorage()});
-import {spawn} from 'child_process'
+import {spawn,exec} from 'child_process'
 import fs from 'fs'
 import dotenv from "dotenv"
+import cors from 'cors'
 dotenv.config()
 
 
 const app = express();
 app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 
 mongoose.connect(process.env.DBURI).then(()=>{
@@ -27,6 +29,9 @@ const fileSchema = new mongoose.Schema({
    },
     report: {
         type:String
+    },
+    severity: {
+        type:Number
     }
 },{versionKey:false});
 
@@ -57,34 +62,44 @@ app.post("/upload",upload.array('file',10),(req,res)=>{
     res.send("Uploaded Successfully")
 })
 
-app.get("/execute",async(req,res)=>{
+app.get("/execute", async (req, res) => {
     let files = await File.find({});
-    files.forEach((file)=> {
-        const python=spawn('python3',['main.py'])
-        python.stdin.write(file.file_name)
-        python.stdin.end()
-        console.log("Route hit confirm")
-        python.stdout.on('data', (data) => {
-            File.updateOne({_id:file._id},{report:data.toString()})
-                .then(()=>{
-                    console.log("Report generated for ",file.file_name)
-                    fs.writeFile(`Report-${file.file_name.slice(0,-4)}.txt`,data.toString(),(err)=>{
-                        if(err){
-                            console.log(`Error writing report to file ${file.file_name}`,err)
-                        }else{
-                            console.log(`File generation successful for ${file.file_name}`)
-                        }
+    let fileReports = [];
+    let promises = files.map((file) => {
+        return new Promise((resolve, reject) => {
+            const python = spawn('python', ['main.py'])
+            python.stdin.write(file.file_name)
+            python.stdin.end()
+            console.log("Route hit confirm")
+            python.stdout.on('data', (data) => {
+                let severity = parseInt(data.toString().charAt(data.length - 2));
+                File.updateOne({ _id: file._id }, { report: data.toString().slice(0, -2), severity: severity })
+                    .then(() => {
+                        console.log("Report generated for ", file.file_name)
+                        fileReports.push({ file_name: file.file_name, severity: severity });
+                        fs.writeFile(`Report-${file.file_name.slice(0, -4)}.txt`, data.toString().slice(0, -2), (err) => {
+                            if (err) {
+                                console.log(`Error writing report to file ${file.file_name}`, err)
+                            } else {
+                                console.log(`File generation successful for ${file.file_name}`)
+                            }
+                        })
+                        resolve();
                     })
-                })
-                .catch((err)=>{
-                    console.log("Error in generation ",err)
-                })
+                    .catch((err) => {
+                        console.log("Error in generation ", err)
+                        reject(err);
+                    })
+            });
+            python.on('close', (code) => {
+                console.log("Process exited with code ", code)
+            })
         });
-        python.on('close', (code) => {
-          console.log("Process exited with code ",code)
-        })
     });
-    res.send("Execution Successful")
+
+    Promise.all(promises)
+        .then(() => res.json(fileReports))
+        .catch((err) => res.status(500).json({ error: err.message }));
 })
 
 app.get("/download/:fileName",(req,res)=>{
@@ -98,7 +113,26 @@ app.get("/download/:fileName",(req,res)=>{
     })
 })
 
-
+app.get("/finish",async(req,res)=>{
+    try{
+        await File.deleteMany({})
+        console.log("Database wiped.")
+    }catch (err){
+        console.log("Error in wiping database.")
+    }
+    exec('sh del.sh',(error,stdout,stderr)=>{
+        if(error){
+            console.log("Error executing script, ",error)
+            return res.status(500).send('Error executing script')
+        }
+        if(stderr){
+            console.log("Shell script error ",stderr)
+        }
+        console.log("Shell script output --> ",stdout)
+    })
+    console.log("Deleting files....")
+    res.send("Data has been deleted from servers.")
+})
 
 app.listen(process.env.PORT, () => {
     console.log('Server ON');

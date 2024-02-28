@@ -2,6 +2,7 @@ import encryption.enc
 import authnacc.auth
 import netsec.net
 import prosec.pro
+import re
 
 from datetime import datetime
 file = input()
@@ -104,4 +105,19 @@ def generate_report(file):
             f"{'\n'.join(content)}"
             f"\n\n=========================== End of Report ================================== ")
 
+
+def extract_highest_severity(report):
+    lines = report.split('\n')
+    highest_severity = None
+    for line in lines:
+        match = re.match(r'Number of Severity (\d) findings: (\d+)', line)
+        if match:
+            severity = int(match.group(1))
+            findings = int(match.group(2))
+
+            if findings > 0 and (highest_severity is None or severity > highest_severity):
+                highest_severity = severity
+    return highest_severity
+
 print(generate_report(file))
+print(extract_highest_severity(generate_report(file)))
