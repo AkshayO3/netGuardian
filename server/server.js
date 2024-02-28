@@ -1,6 +1,7 @@
 import express from "express"
 import mongoose from "mongoose"
 import multer from "multer"
+import cors from "cors"
 const upload = multer({ storage: multer.memoryStorage()});
 import {spawn} from 'child_process'
 import fs from 'fs'
@@ -10,6 +11,7 @@ dotenv.config()
 
 const app = express();
 app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 
 mongoose.connect(process.env.DBURI).then(()=>{
@@ -60,7 +62,7 @@ app.post("/upload",upload.array('file',10),(req,res)=>{
 app.get("/execute",async(req,res)=>{
     let files = await File.find({});
     files.forEach((file)=> {
-        const python=spawn('python3',['main.py'])
+        const python=spawn('python',['main.py'])
         python.stdin.write(file.file_name)
         python.stdin.end()
         console.log("Route hit confirm")

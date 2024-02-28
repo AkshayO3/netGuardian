@@ -1,0 +1,97 @@
+Device name: Rio_erps_20382024-02-29 00:26:35Number of Severity 1 findings: 2Number of Severity 2 findings: 6Number of Severity 3 findings: 0
+Severity:2
+Description:Too many users present --> 4, Found ['ram', 'sam', 'bam', 'tam']
+Severity:1
+Configuration password not found.
+Severity:2
+Insecure access protocol in lines -->
+tftp tftp-server flash:core\
+tftp tftp-server flash:*\
+http ip http server\
+ftp ip ftp password abcd\
+http ip http secure-server\
+http ip http authentication local\
+ftp ip ftp username user1\
+
+Severity:2
+Insecure SNMP access detected --> 
+Insecure SNMP configuration: snmp-server group group1 v1 
+Insecure SNMP configuration: snmp-server group group2 v1 
+Insecure SNMP configuration: snmp-server group group3 v2c 
+Severity:1
+Missing host authentication on access port: GigabitEthernet1/1
+Missing host authentication on access port: GigabitEthernet1/2
+Missing host authentication on access port: GigabitEthernet1/3
+Missing host authentication on access port: GigabitEthernet1/4
+Missing host authentication on access port: GigabitEthernet1/5
+Missing host authentication on access port: GigabitEthernet1/6
+Missing host authentication on access port: GigabitEthernet1/7
+Missing host authentication on access port: GigabitEthernet1/8
+Missing host authentication on access port: GigabitEthernet1/9
+Missing host authentication on access port: GigabitEthernet1/10
+Missing host authentication on access port: GigabitEthernet1/11
+Missing host authentication on access port: GigabitEthernet1/12
+Missing host authentication on access port: GigabitEthernet1/13
+Missing host authentication on access port: GigabitEthernet1/14
+Missing host authentication on access port: GigabitEthernet1/15
+Missing host authentication on access port: GigabitEthernet1/16
+Missing host authentication on access port: GigabitEthernet1/17
+Missing host authentication on access port: GigabitEthernet1/18
+Missing host authentication on access port: GigabitEthernet1/19
+Missing host authentication on access port: GigabitEthernet1/20
+Missing host authentication on access port: AppGigabitEthernet1/1
+Missing host authentication on access port: Vlan1
+Missing host authentication on access port: Vlan17
+Missing host authentication on access port: Vlan81
+Missing host authentication on access port: Vlan230
+Severity:2
+Description:
+Missing Storm Control on access ports --> interface GigabitEthernet1/1)
+Missing Storm Control on access ports --> interface GigabitEthernet1/2)
+Missing Storm Control on access ports --> interface GigabitEthernet1/3)
+Missing Storm Control on access ports --> interface GigabitEthernet1/7)
+Missing Storm Control on access ports --> interface GigabitEthernet1/8)
+Missing Storm Control on access ports --> interface GigabitEthernet1/9)
+Missing Storm Control on access ports --> interface GigabitEthernet1/10)
+Missing Storm Control on access ports --> interface GigabitEthernet1/11)
+Missing Storm Control on access ports --> interface GigabitEthernet1/12)
+Missing Storm Control on access ports --> interface GigabitEthernet1/13)
+Missing Storm Control on access ports --> interface GigabitEthernet1/14)
+Missing Storm Control on access ports --> interface GigabitEthernet1/17)
+Missing Storm Control on access ports --> interface GigabitEthernet1/18)
+Missing Storm Control on access ports --> interface GigabitEthernet1/19)
+Missing Storm Control on access ports --> interface GigabitEthernet1/20)
+Missing Storm Control on access ports --> interface AppGigabitEthernet1/1)
+Missing Storm Control on access ports --> interface Vlan1)
+Missing Storm Control on access ports --> interface Vlan81)
+Missing Storm Control on access ports --> interface Vlan230)
+Severity:2
+Description:
+Does not contain port security:interface GigabitEthernet1/1
+Does not contain port security:interface GigabitEthernet1/2
+Does not contain port security:interface GigabitEthernet1/3
+Does not contain port security:interface GigabitEthernet1/7
+Does not contain port security:interface GigabitEthernet1/8
+Number of mac addresses configured on switch are more than what is specified:interface GigabitEthernet1/9
+Does not contain port security:interface GigabitEthernet1/10
+Does not contain port security:interface GigabitEthernet1/11
+Does not contain port security:interface GigabitEthernet1/12
+Does not contain port security:interface GigabitEthernet1/13
+Does not contain port security:interface GigabitEthernet1/14
+Does not contain port security:interface GigabitEthernet1/17
+Does not contain port security:interface GigabitEthernet1/18
+Does not contain port security:interface GigabitEthernet1/19
+Does not contain port security:interface GigabitEthernet1/20
+Does not contain port security:interface AppGigabitEthernet1/1
+Does not contain port security:interface Vlan1
+Does not contain port security:interface Vlan81
+Does not contain port security:interface Vlan230
+Severity:2
+DHCP snooping is missing on interface GigabitEthernet1/2\ with VLAN 81
+DHCP snooping is missing on interface GigabitEthernet1/3\ with VLAN 25
+DHCP snooping is missing on interface GigabitEthernet1/5\ with VLAN 101
+DHCP snooping is missing on interface GigabitEthernet1/6\ with VLAN 201
+DHCP snooping is missing on interface GigabitEthernet1/7\ with VLAN 155
+DHCP snooping is missing on interface GigabitEthernet1/9\ with VLAN 25
+DHCP snooping is missing on interface GigabitEthernet1/10\ with VLAN 17
+=========================== End of Report ================================== 

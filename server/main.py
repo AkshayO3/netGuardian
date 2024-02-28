@@ -96,12 +96,12 @@ def generate_report(file):
         content.append(netsec.net.check_logging_buffer_size(file, 10000))
         sevCheck(int(netsec.net.check_logging_buffer_size(file, 10000)[9:10]))
 
-    return (f"Device name: {hostname(file)}\n"
-            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-7]}\n"
-            f"Number of Severity 1 findings: {oneWarnings}\n"
-            f"Number of Severity 2 findings: {twoWarnings}\n"
-            f"Number of Severity 3 findings: {threeWarnings}\n\n"
-            f"{'\n'.join(content)}"
-            f"\n\n=========================== End of Report ================================== ")
+    return (f"Device name: {hostname(file)}"
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-7]}"
+            f"Number of Severity 1 findings: {oneWarnings}"
+            f"Number of Severity 2 findings: {twoWarnings}"
+            f"Number of Severity 3 findings: {threeWarnings}\n"
+            f"{''.join(content)}"
+            f"=========================== End of Report ================================== ")
 
 print(generate_report(file))

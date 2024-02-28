@@ -1,0 +1,63 @@
+Device name: Rio_erps_20332024-02-29 00:26:35Number of Severity 1 findings: 3Number of Severity 2 findings: 5Number of Severity 3 findings: 1
+Severity:1
+Configuration password not found.
+Severity:2
+Insecure access protocol in lines -->
+ftp ip ftp password password123\
+ftp ip ftp username user5\
+http ip http authentication local\
+http ip http server\
+tftp tftp-server flash:4_node_erp\
+
+Severity:2
+Insecure SNMP access detected --> 
+Insecure SNMP configuration: snmp-server community public RO
+Severity:1
+Missing host authentication on access port: GigabitEthernet1/1
+Missing host authentication on access port: GigabitEthernet1/2
+Missing host authentication on access port: GigabitEthernet1/3
+Missing host authentication on access port: GigabitEthernet1/4
+Missing host authentication on access port: GigabitEthernet1/5
+Missing host authentication on access port: GigabitEthernet1/6
+Missing host authentication on access port: GigabitEthernet1/7
+Missing host authentication on access port: GigabitEthernet1/8
+Missing host authentication on access port: GigabitEthernet1/9
+Missing host authentication on access port: GigabitEthernet1/10
+Missing host authentication on access port: AppGigabitEthernet1/1
+Missing host authentication on access port: Vlan1
+Missing host authentication on access port: Vlan17
+Missing host authentication on access port: Vlan18
+Severity:2
+Description:
+Missing Storm Control on access ports --> interface GigabitEthernet1/1)
+Missing Storm Control on access ports --> interface GigabitEthernet1/2)
+Missing Storm Control on access ports --> interface GigabitEthernet1/4)
+Missing Storm Control on access ports --> interface GigabitEthernet1/5)
+Missing Storm Control on access ports --> interface GigabitEthernet1/6)
+Missing Storm Control on access ports --> interface GigabitEthernet1/7)
+Missing Storm Control on access ports --> interface GigabitEthernet1/9)
+Missing Storm Control on access ports --> interface GigabitEthernet1/10)
+Missing Storm Control on access ports --> interface Vlan1)
+Missing Storm Control on access ports --> interface Vlan17)
+Missing Storm Control on access ports --> interface Vlan18)
+Severity:1
+Description:
+Does not contain port security:interface GigabitEthernet1/1
+Does not contain port security:interface GigabitEthernet1/2
+Does not contain port security:interface GigabitEthernet1/4
+Does not contain port security:interface GigabitEthernet1/5
+Does not contain port security:interface GigabitEthernet1/6
+Does not contain port security:interface GigabitEthernet1/7
+Does not contain port security:interface GigabitEthernet1/9
+Does not contain port security:interface GigabitEthernet1/10
+Does not contain port security:interface Vlan1
+Does not contain port security:interface Vlan17
+Does not contain port security:interface Vlan18
+Severity:2
+DHCP snooping is missing on interface GigabitEthernet1/6\ with VLAN 125
+DHCP snooping is missing on interface GigabitEthernet1/8\ with VLAN 18
+DHCP snooping is missing on interface GigabitEthernet1/10\ with VLAN 17
+Severity:2
+SysLog reporting is missing.
+Severity:3
+Logging buffer size (9999) is smaller than the threshold (10000).=========================== End of Report ================================== 
