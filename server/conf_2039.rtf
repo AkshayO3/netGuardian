@@ -1,0 +1,267 @@
+!\
+! Last configuration change at 23:11:44 UTC Sat Apr 18 1970\
+!\
+version 17.13\
+service timestamps debug datetime msec\
+service timestamps log datetime msec\
+no platform punt-keepalive disable-kernel-core\
+no platform punt-keepalive settings\
+no platform bridge-security all\
+!\
+hostname Rio_erps_2039\
+!\
+no logging console\
+!\
+ethernet ring g8032 profile my_profile\
+ timer wtr 1\
+ timer guard 10\
+!\
+ethernet ring g8032 my_ring\
+ port0 interface GigabitEthernet1/5\
+ port1 interface GigabitEthernet1/3\
+ instance 1\
+  profile my_profile\
+  rpl port1 owner\
+  inclusion-list vlan-ids 100-200\
+  aps-channel\
+   port0 control vlan 111\
+   port1 control vlan 111\
+  !\
+ !\
+!\
+ethernet cfm ieee \
+ethernet cfm global\
+ethernet cfm domain cfm_dm_7 level 7\
+ service vlan-id 101 port\
+  continuity-check\
+  continuity-check interval 1m\
+!\
+no aaa new-model\
+no process cpu autoprofile hog\
+rep bpduleak\
+ptp mode e2etransparent\
+!\
+!\
+!\
+!\
+!\
+!\
+ip dhcp pool webuidhcp\
+   cip instance 1\
+!\
+!\
+!\
+login on-success log\
+!\
+crypto pki trustpoint TP-self-signed-001122223394\
+ enrollment selfsigned\
+ subject-name cn=IOS-Self-Signed-Certificate-00112223394\
+ revocation-check none\
+ rsakeypair TP-self-signed-00112223394\
+ hash sha256\
+!\
+crypto pki trustpoint SLA-TrustPoint\
+ enrollment pkcs12\
+ revocation-check crl\
+ hash sha256\
+!\
+!\
+crypto pki certificate chain TP-self-signed-2974651904\
+ certificate self-signed 01\
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 \
+  31312F30 2D060355 04030C26 494F532D 53656C66 2D536967 6E65642D 43657274 \
+  69666963 6174652D 32393734 36353139 3034301E 17RWE031 31303035 30303533 \
+  35345A17 WQER3131 30303530 30353335 345A3031 312F302D 06035504 030C2649 \
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 39373436 \
+  35313930 34308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 \
+  0A028201 01008FE7 2800BA93 A21AC8AC 27E47F4B 23CB4F8B 0E509B63 8A4D4BD1 \
+  ED83CF2D 4CD4ED28 4AC7016A 14D837D5 42DDE205 3UYTBE9D 32A8B533 61FF830D \
+  0C641798 696355B3 F971178B 228CB37A 6CF3E78E 130D63E6 14491D14 ECD77094 \
+  BBDA6ACA FC545484 EE4ED94D 39IOUYA7 F47F6490 8E87877C AD58FECC 0F0B100A \
+  99EACBA6 13DAB80B E3273C56 BFDEF96D 83F76FBC 2313E5CF 6A1699FA 03EE3B17 \
+  2B3B7B68 591283A9 B390293E D8BA7800 2C4E07BA BD58875B 2D63E2B6 BE9F3945 \
+  14D0AF0B EB817485 0D99E657 154D444C D11E28D4 ED20D38C 039A56F7 B814E20F \
+  343B38B4 D2447084 296BDC70 6B3816AE 36513147 26BC70F6 A08FFC11 4A76657F \
+  E736CB7D C4D50203 010001A3 53305130 1D060355 1D0E0416 04148077 4FA0A8D4 \
+  C055B328 36CAC026 738D0B3D DDD5301F 0603551D 23041830 16801480 774FA0A8 \
+  D4C055B3 2836CAC0 26738D0B 3DDDD530 0F060355 1D130101 FF040530 030101FF \
+  300D0609 2A864886 F70D0101 0B050003 82010100 83826976 0E41AA07 D5DA1729 \
+  A31233C7 AE5C3096 99E173E4 ECBCD8BA 69A8FE5C 06D46827 ABAC13A5 D1B37462 \
+  AD4282E8 A2D38DE0 21F8731C 38E1B637 5OPLICD4 F1054E97 5C257FC9 569A32AF \
+  05D25285 3E249E26 35094C3A 59EB610C F3DBF6C5 6CFC819B 04F66792 D16EB1AB \
+  6976DF10 E7A85882 4F885841 59C8DAF7 A46528F4 296CD2B8 20DECD5B AF45CA72 \
+  281B94CB 8108D7C0 36061034 EF928145 2345EE09 7CC065B3 4952CBC3 4582E3A4 \
+  0CED3D91 35DA7E4A 61CDE064 FB165C17 44572F2D 61DF7976 1B52277B 44814BC2 \
+  42B8BF4A 5137C56C B1067D73 42706040 FIUYTE8C 2D02F053 9128EA29 D5DBD244 \
+  069DD4FC 61ACDC18 B31F7BDC A7398766 76819F5A\
+  	quit\
+crypto pki certificate chain SLA-TrustPoint\
+ certificate ca 01\
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 \
+  32310E30 0C060355 040A1305 43697363 6IUYT030 1E060355 04031317 43697363 \
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 \
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 \
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 \
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D0POLI1 05000382 010F0030 \
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D \
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 \
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE \
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC \
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 5UYGT3E3 C0BD23CF 58BD7188 \
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 \
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 \
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 \
+  DFC7C6CF 04DD7FD1 02UYTR00 01A34230 40300E06 03551D0F 0101FF04 04030201 \
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 \
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 \
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 \
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B \
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 \
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C \
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E9IOUY7F 5BDDEB86 C71E3B49 1765308B \
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 \
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB \
+  418616A9 40OINB49 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 71LKM2F0 \
+  D6KGZF7F 28\
+  	quit\
+!\
+no cts server test all enable\
+diagnostic bootup level minimal\
+!\
+!\
+!\
+spanning-tree mode rapid-pvst\
+spanning-tree extend system-id\
+no spanning-tree vlan 100-200\
+memory free low-watermark processor 63570\
+!\
+!\
+alarm-profile defaultPort\
+ alarm not-operating \
+ syslog not-operating \
+ notifies not-operating \
+!\
+enable password user@123\
+!\
+username theuser password 0 password123\
+\
+!\
+!\
+!\
+!\
+!\
+!\
+transceiver type all\
+ monitoring\
+vlan internal allocation policy ascending\
+lldp run\
+no cdp run\
+!\
+!\
+!\
+!\
+interface GigabitEthernet1/1\
+ switchport access vlan 250\
+ switchport mode access\
+ switchport port-security maximum 4000 vlan access\
+ switchport port-security violation protect\
+ no cdp enable\
+!\
+interface GigabitEthernet1/2\
+ no cdp enable\
+!\
+interface GigabitEthernet1/3\
+ switchport trunk allowed vlan 100-200\
+ switchport mode trunk\
+ no cdp enable\
+ no lldp transmit\
+ ethernet cfm mep domain cfm_dm_7 mpid 41 service vlan-id 101\
+!\
+interface GigabitEthernet1/4\
+ no cdp enable\
+!\
+interface GigabitEthernet1/5\
+ switchport trunk allowed vlan 100-200\
+ switchport mode trunk\
+ no cdp enable\
+ no lldp transmit\
+ ethernet cfm mep domain cfm_dm_7 mpid 32 service vlan-id 101\
+!\
+interface GigabitEthernet1/6\
+ switchport trunk allowed vlan 100-200\
+ switchport mode trunk\
+ shutdown\
+ no cdp enable\
+!\
+interface GigabitEthernet1/7\
+ switchport access vlan 150\
+ switchport trunk allowed vlan 150-175\
+ switchport mode access\
+ no cdp enable\
+ no lldp transmit\
+!\
+interface GigabitEthernet1/8\
+ no cdp enable\
+!\
+interface GigabitEthernet1/9\
+ shutdown\
+ no cdp enable\
+!\
+interface GigabitEthernet1/10\
+ switchport access vlan 17\
+ switchport mode access\
+ no cdp enable\
+!\
+interface AppGigabitEthernet1/1\
+ shutdown\
+ no cdp enable\
+!\
+interface Vlan1\
+ no ip address\
+!\
+interface Vlan17\
+ ip address dhcp\
+!\
+interface Vlan155\
+ no ip address\
+!\
+ip http server\
+ip http secure-server\
+ip forward-protocol nd\
+!\
+ip ssh bulk-mode 131072\
+!         \
+!\
+!\
+!\
+control-plane\
+!\
+!\
+line con 0\
+ exec-timeout 0 0\
+ stopbits 1\
+ speed 115200\
+line aux 0\
+line vty 0 4\
+ login\
+ transport input ssh\
+line vty 5 15\
+ login\
+ transport input ssh\
+!\
+!\
+!\
+!\
+!\
+!         \
+!\
+!\
+!\
+!\
+!\
+!\
+!\
+!\
+end\
+\
+}
