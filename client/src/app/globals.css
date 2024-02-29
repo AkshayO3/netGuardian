@@ -49,3 +49,11 @@
 .drag{
   transition: 0.5s ease-in-out;
 }
+.report table{
+  border-collapse: separate;
+  border-spacing: 20px;
+}
+
+.report table tr td{
+  padding: 20px 30px;
+}
