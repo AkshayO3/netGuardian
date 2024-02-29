@@ -6,6 +6,7 @@
 @tailwind utilities;
 :root{
   background-color: #f1f1f1;
+  color: black;
 }
 .font-oswald-title{
   font-family: Oswald;
