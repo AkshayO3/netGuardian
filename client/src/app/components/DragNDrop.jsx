@@ -28,7 +28,11 @@ const DragNDrop = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop, noClick: true, noKeyboard: true });
 
-  const handleExecute = () => {
+  const handleExecute = async() => {
+    //timeout
+
+    await new Promise(resolve => setTimeout(resolve, 10000))
+    //
     axiosInstance.get('/execute')
       .then(response => {
         console.log(response);
