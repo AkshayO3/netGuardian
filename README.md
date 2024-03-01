@@ -22,11 +22,6 @@ To use this project, follow these steps:
 1. Fork this repository from GitHub.
 2. Clone the forked repository to your local machine using the `git clone` command followed by the repository URL.
 3. Open the netGuardian folder in your preferred code editor.
-4. Make an empty `.env` file in the 'server' folder and copy the following text inside it, then save it:
-
-   ```plaintext
-   DBURI=mongodb+srv://dexter:Akshay1@cluster0.8w5sf3x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-   PORT=3001
 
 ## Usage
 
