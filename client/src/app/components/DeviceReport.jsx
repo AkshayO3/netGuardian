@@ -17,14 +17,14 @@ const DeviceReport = () => {
       });
   }, []);
 
-  // const downloadPdf = (url) => {
-  //   const link = document.createElement('a');
-  //   link.href = url;
-  //   link.setAttribute('download','Report')
-  //   document.body.appendChild(link)
-  //   link.click()
-  //   link.remove()
-  // };
+  const downloadPdf = (url) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download','Report')
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+  };
 
   return (
     <div className='report bg-white flex rounded-xl mx-5 pt-5 pb-5 gap-x-10 justify-around'>
@@ -46,7 +46,7 @@ const DeviceReport = () => {
         {data.map((item, index) => (
           <tr align='center' key={index}>
             <td>
-              <h2 className='subHead'>{item.file_name}</h2>
+              <h2 className='subHead'>{item.device_name}</h2>
             </td>
             <td>
               <div className={`riskBar w-16 color px-14 py-4 rounded-full ${item.severity === 3 ? "bg-red-500" : item.severity === 2 ? "bg-yellow-300" : "bg-green-500"}`}></div>

@@ -57,3 +57,7 @@
 .report table tr td{
   padding: 20px 30px;
 }
+
+.animation{
+  transition: 0.5s ease-in-out;
+}

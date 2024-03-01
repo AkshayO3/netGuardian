@@ -119,5 +119,14 @@ def extract_highest_severity(report):
                 highest_severity = severity
     return highest_severity
 
+
+def extract_device_name(report):
+    match = re.search(r'Device name: (.*)', report)
+    if match:
+        return match.group(1)
+    else:
+        return None
+
 print(generate_report(file))
 print(extract_highest_severity(generate_report(file)))
+print(extract_device_name(generate_report(file)))

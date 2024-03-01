@@ -32,6 +32,9 @@ const fileSchema = new mongoose.Schema({
     },
     severity: {
         type:Number
+    },
+    device_name: {
+        type:String
     }
 },{versionKey:false});
 
@@ -67,17 +70,17 @@ app.get("/execute", async (req, res) => {
     let fileReports = [];
     let promises = files.map((file) => {
         return new Promise((resolve, reject) => {
-            const python = spawn('python', ['main.py'])
+            const python = spawn('python3', ['main.py'])
             python.stdin.write(file.file_name)
             python.stdin.end()
             console.log("Route hit confirm")
             python.stdout.on('data', (data) => {
-                let severity = parseInt(data.toString().charAt(data.length - 2));
-                File.updateOne({ _id: file._id }, { report: data.toString().slice(0, -2), severity: severity })
+                let lines = data.toString().split("\n");
+                File.updateOne({ _id: file._id }, { report: lines.slice(0,-3).join("\n"), severity: parseInt(lines[lines.length-3]),device_name:lines[lines.length-2] })
                     .then(() => {
                         console.log("Report generated for ", file.file_name)
-                        fileReports.push({ file_name: file.file_name, severity: severity });
-                        fs.writeFile(`Report-${file.file_name.slice(0, -4)}.txt`, data.toString().slice(0, -2), (err) => {
+                        fileReports.push({ device_name: lines[lines.length-2], severity: parseInt(lines[lines.length-3]), file_name: file.file_name });
+                        fs.writeFile(`Report-${file.file_name.slice(0, -4)}.txt`, lines.slice(0,-3).join("\n"), (err) => {
                             if (err) {
                                 console.log(`Error writing report to file ${file.file_name}`, err)
                             } else {
@@ -132,6 +135,17 @@ app.get("/finish",async(req,res)=>{
     })
     console.log("Deleting files....")
     res.send("Data has been deleted from servers.")
+})
+
+app.get("/test",(req,res)=> {
+    const python = spawn('python3', ['main.py'])
+    python.stdin.write('conf_2034.rtf')
+    python.stdin.end()
+    console.log("Route hit confirm")
+    python.stdout.on('data', (data) => {
+        let lines = data.toString().split("\n");
+        console.log(parseInt(lines[lines.length-3].slice(-1)))
+    })
 })
 
 app.listen(process.env.PORT, () => {
