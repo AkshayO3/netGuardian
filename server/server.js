@@ -137,17 +137,6 @@ app.get("/finish",async(req,res)=>{
     res.send("Data has been deleted from servers.")
 })
 
-app.get("/test",(req,res)=> {
-    const python = spawn('python3', ['main.py'])
-    python.stdin.write('conf_2034.rtf')
-    python.stdin.end()
-    console.log("Route hit confirm")
-    python.stdout.on('data', (data) => {
-        let lines = data.toString().split("\n");
-        console.log(parseInt(lines[lines.length-3].slice(-1)))
-    })
-})
-
 app.listen(process.env.PORT, () => {
     console.log('Server ON');
 });
