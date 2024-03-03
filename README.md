@@ -1,6 +1,5 @@
 # netGuardian
 
-![netGuardian Logo](link-to-image.png)
 
 ## Description
 
