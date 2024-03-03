@@ -1,7 +1,5 @@
 # netGuardian
 
-![WhatsApp Image 2024-03-02 at 18 56 39_692a7a8f](https://github.com/KshirjaSahay/netGuardian/assets/145379472/f86fa106-067c-43cf-9dd4-a2e51f820728)
-
 
 ## Description
 
