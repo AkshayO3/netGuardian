@@ -3,15 +3,15 @@
 
 ## Description
 
-The netGuardian website provides a user-friendly interface for analyzing configuration files and identifying potential errors. Here's an overview of how it works:
+The netGuardian website provides a user-friendly interface for analyzing configuration files and identifying potential warnings. Here's an overview of how it works:
 
 1. **Navigation:** Begin by visiting the landing page, where you'll find intuitive navigation options to proceed to the file input page.
 
-2. **File Input:** Once on the file input page, you have two convenient options for uploading your configuration file. You can either drag and drop the file into the designated area or use the file browser to select it manually.
+2. **File Input:** Once on the file input page, you have two convenient options for uploading your folder containing the configuration files. You can either drag and drop the folder into the designated area or use the file browser to select it manually.
 
-3. **Processing:** After selecting your file, the netGuardian system seamlessly handles the processing. The file is transmitted to the server, where it undergoes comprehensive analysis to detect any errors.
+3. **Processing:** After selecting your folder, the netGuardian system seamlessly handles the processing. The folder is transmitted to the server, where it undergoes comprehensive analysis to detect any warnings.
 
-4. **Error Reporting:** Once the analysis is complete, any errors found within the configuration file are presented to you in a clear and organized report format directly on the frontend of the website. This report highlights the type and severity of each error detected, enabling you to address them effectively.
+4. **Error Reporting:** Once the analysis is complete, any warnings found within the configuration file are presented to you in a clear and organized report formatted directly on the frontend of the website. This report highlights the type and severity of each warning detected, enabling you to address them effectively.
 
 
 ## Installation
