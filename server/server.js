@@ -74,6 +74,9 @@ app.get("/execute", async (req, res) => {
             python.stdin.write(file.file_name)
             python.stdin.end()
             console.log("Route hit confirm")
+            python.stderr.on('data', (data) => {
+                console.error(`Python error: ${data}`);
+            });
             python.stdout.on('data', (data) => {
                 let lines = data.toString().split("\n");
                 File.updateOne({ _id: file._id }, { report: lines.slice(0,-3).join("\n"), severity: parseInt(lines[lines.length-3]),device_name:lines[lines.length-2] })

@@ -96,14 +96,16 @@ def generate_report(file):
     if (netsec.net.check_logging_buffer_size(file, 10000)):
         content.append(netsec.net.check_logging_buffer_size(file, 10000))
         sevCheck(int(netsec.net.check_logging_buffer_size(file, 10000)[9:10]))
-
-    return (f"Device name: {hostname(file)}\n"
-                f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-7]}\n"
-                f"Number of Severity 1 findings: {oneWarnings}\n"
-                f"Number of Severity 2 findings: {twoWarnings}\n"
-                f"Number of Severity 3 findings: {threeWarnings}\n\n"
-                f"{'\n'.join(content)}"
-                "\n\n=========================== End of Report ================================== ")
+    final = '\n'.join(content)
+    return (
+        f"Device name: {hostname(file)}\n"
+        f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-7]}\n"
+        f"Number of Severity 1 findings: {oneWarnings}\n"
+        f"Number of Severity 2 findings: {twoWarnings}\n"
+        f"Number of Severity 3 findings: {threeWarnings}\n\n"
+        f"{final}"
+        f"\n\n=========================== End of Report ================================== "
+    )
 
 
 def extract_highest_severity(report):
