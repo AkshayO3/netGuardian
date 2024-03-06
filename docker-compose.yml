@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  client:
+    image: netguardian-client
+    ports:
+      - 3000:3000
+    environment:
+      VITE_API_URL: http://localhost:3000
+
+  server:
+    image: netguardian-server
+    ports:
+      - 3001:3001
+    environment:
+      DB_URL: "${DB_URI}"

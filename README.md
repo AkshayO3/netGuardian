@@ -41,5 +41,23 @@ To use this project, follow these steps:
    npm run dev
 6. Open your browser and go to "**localhost:3000**" to view the project.
 
+## Docker
+1. Pull the images from docker hub.
+   ````
+   docker pull akshayyyyy/netguardian-client akshayyyyy/netguardian-server
+2. Download the docker-compose.yml file.
+   ````
+   curl -o docker-compose.yml https://raw.githubusercontent.com/akshayO3/netGuardian/main/docker-compose.yml
+3. Create a .env file.
+    **Ensure the docker images are present in the same directory.**
+   ````
+   mkdir .env
+   sudo vi .env
+   
+4. Enter your mongodb database URI inside the ``.env`` file and ``:x`` to save and quit.
+5. Run the following command to create a container:
+   ````
+   docker-compose up
+
 ## Contribution
 While this project is not actively seeking contributions, we welcome clear ideas and concise methods for possible improvements.
