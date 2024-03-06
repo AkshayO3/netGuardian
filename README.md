@@ -41,10 +41,11 @@ To use this project, follow these steps:
    npm run dev
 6. Open your browser and go to "**localhost:3000**" to view the project.
 
-## Docker
+## Docker (Tested on MacOS/Windows)
 1. Pull the images from docker hub.
    ````
-   docker pull akshayyyyy/netguardian-client akshayyyyy/netguardian-server
+   docker pull akshayyyyy/netguardian-client
+   docker pull akshayyyyy/netguardian-server
 2. Download the docker-compose.yml file.
    ````
    curl -o docker-compose.yml https://raw.githubusercontent.com/akshayO3/netGuardian/main/docker-compose.yml
