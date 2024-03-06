@@ -53,11 +53,9 @@ To use this project, follow these steps:
    ````
    mkdir .env
    sudo vi .env
-   
 4. Enter your mongodb database URI inside the ``.env`` file and ``:x`` to save and quit.
 5. Run the following command to create a container:
    ````
    docker-compose up
-
 ## Contribution
 While this project is not actively seeking contributions, we welcome clear ideas and concise methods for possible improvements.
